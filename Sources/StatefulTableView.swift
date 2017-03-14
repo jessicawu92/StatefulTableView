@@ -108,19 +108,14 @@ public final class StatefulTableView: UIView {
     return view
   }()
 
-  open var defaultUIRefreshControl = UIRefreshControl() {
+  open var refreshControl = UIRefreshControl() {
     didSet {
       oldValue.removeTarget(self, action: #selector(refreshControlValueChanged), for: .valueChanged)
       oldValue.removeFromSuperview()
       refreshControlInit()
     }
   }
-  internal var refreshControl: UIRefreshControl {
-    get {
-      return defaultUIRefreshControl
-    }
-  }
-
+    
   // MARK: - Properties
 
   /**

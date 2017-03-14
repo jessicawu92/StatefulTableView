@@ -85,4 +85,12 @@ public typealias LoadMoreCompletionHandler = (_ canLoadMore: Bool, _ errorOrNil:
    - returns: An optional view to show.
    */
   @objc optional func statefulTableViewLoadMoreErrorView(tvc: StatefulTableView, forLoadMoreError: NSError?) -> UIView?
+    
+  /**
+   This delegate method will be called when refresh control will end refreshing.
+
+   - parameter tvc:              The tableView calling the method.
+   */
+  @objc optional func statefulTableViewWillFinishPullToRefresh(tvc: StatefulTableView)
+
 }

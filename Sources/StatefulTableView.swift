@@ -103,8 +103,9 @@ public final class StatefulTableView: UIView {
     view.isHidden = true
     return view
   }()
-
-  internal lazy var refreshControl = UIRefreshControl()
+    
+  open static var defaultUIRefreshControl = UIRefreshControl()
+  internal lazy var refreshControl = StatefulTableView.defaultUIRefreshControl
 
   // MARK: - Properties
 

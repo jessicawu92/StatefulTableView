@@ -70,13 +70,17 @@ public final class StatefulTableView: UIView {
     commonInit()
   }
 
+  internal func refreshControlInit() {
+    refreshControl.addTarget(self,
+      action: #selector(refreshControlValueChanged), for: .valueChanged)
+    tableView.addSubview(refreshControl)
+  }
+
   func commonInit() {
     addSubview(tableView)
     addSubview(dynamicContentView)
 
-    refreshControl.addTarget(self,
-      action: #selector(refreshControlValueChanged), for: .valueChanged)
-    tableView.addSubview(refreshControl)
+    refreshControlInit()
   }
 
   /**
@@ -103,9 +107,19 @@ public final class StatefulTableView: UIView {
     view.isHidden = true
     return view
   }()
-    
-  open static var defaultUIRefreshControl = UIRefreshControl()
-  internal lazy var refreshControl = StatefulTableView.defaultUIRefreshControl
+
+  open var defaultUIRefreshControl = UIRefreshControl() {
+    didSet {
+      oldValue.removeTarget(self, action: #selector(refreshControlValueChanged), for: .valueChanged)
+      oldValue.removeFromSuperview()
+      refreshControlInit()
+    }
+  }
+  internal var refreshControl: UIRefreshControl {
+    get {
+      return defaultUIRefreshControl
+    }
+  }
 
   // MARK: - Properties
 

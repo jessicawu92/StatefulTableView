@@ -11,21 +11,13 @@ import UIKit
 extension StatefulTableView {
   // MARK: - Pull to refresh
 
-    
-  private func endRefreshing() {
-    if let delegateMethod = statefulDelegate?.statefulTableViewWillFinishPullToRefresh {
-      delegateMethod(self)
-    }
-    refreshControl.endRefreshing()
-  }
-    
   func refreshControlValueChanged() {
     if state != .loadingFromPullToRefresh && !state.isLoading {
       if (!triggerPullToRefresh()) {
-        endRefreshing()
+        refreshControl.endRefreshing()
       }
     } else {
-      endRefreshing()
+      refreshControl.endRefreshing()
     }
   }
 
@@ -54,7 +46,8 @@ extension StatefulTableView {
 
   fileprivate func setHasFinishedLoadingFromPullToRefresh(_ tableIsEmpty: Bool, error: NSError?) {
     guard state == .loadingFromPullToRefresh else { return }
-    endRefreshing()
+
+    refreshControl.endRefreshing()
 
     if tableIsEmpty {
       self.setState(.emptyOrInitialLoadError, updateView: true, error: error)

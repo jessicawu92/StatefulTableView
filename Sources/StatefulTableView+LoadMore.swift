@@ -57,10 +57,11 @@ extension StatefulTableView {
       label.textAlignment = .center
       sub = label
     } else {
-      let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-      activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-      activityIndicator.startAnimating()
-      sub = activityIndicator
+//      let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+//      activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+//      activityIndicator.startAnimating()
+//      sub = activityIndicator
+        sub = customLoadMoreView
     }
 
     container.addSubview(sub)

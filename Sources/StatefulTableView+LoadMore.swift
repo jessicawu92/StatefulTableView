@@ -45,7 +45,7 @@ extension StatefulTableView {
       return delegateMethod(self, error)
     }
 
-    let container = UIView(frame: CGRect(origin: .zero, size: CGSize(width: tableView.bounds.width, height: 44)))
+    var container = UIView(frame: CGRect(origin: .zero, size: CGSize(width: tableView.bounds.width, height: 44)))
 
     let sub: UIView
 
@@ -62,6 +62,8 @@ extension StatefulTableView {
 //      activityIndicator.startAnimating()
 //      sub = activityIndicator
         sub = customLoadMoreView
+        container.frame.size.height = customLoadMoreView.frame.height
+        
     }
 
     container.addSubview(sub)

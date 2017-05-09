@@ -116,7 +116,7 @@ public final class StatefulTableView: UIView {
     }
   }
     
-  open var customLoadMoreView = UIView()
+    open var customLoadMoreView: UIView?
     
   // MARK: - Properties
 
